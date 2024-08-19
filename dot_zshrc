@@ -1,4 +1,4 @@
-# Increase history size
+#tIncrease history size
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
@@ -16,6 +16,7 @@ source <(fzf --zsh)
 eval "$(starship init zsh)"
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export GOPATH=/Users/hosack/code/go
 source "$HOME/.cargo/env"
@@ -23,6 +24,10 @@ source "$HOME/.cargo/env"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 alias spp=spotify_player
+alias gits='git status -s'
 
 eval $(zoxide init zsh)
+
+# enable emacs mode so (ctrl+a, a) moves to head of line
+bindkey -e
 
