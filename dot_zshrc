@@ -25,6 +25,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 alias spp=spotify_player
 alias gits='git status -s'
+alias lg=lazygit
 
 eval $(zoxide init zsh)
 
