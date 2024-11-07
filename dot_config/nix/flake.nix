@@ -15,7 +15,10 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.neovim ];
+        [
+          pkgs.neovim
+          pkgs.uv
+        ];
 
       system.defaults = {
         dock.autohide = true;
