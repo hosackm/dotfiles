@@ -10,17 +10,13 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
-export EDITOR=nvim
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-export PATH=$PATH:/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources
-export GOPATH=/Users/hosack/code/go
-source "$HOME/.cargo/env"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 alias spp=spotify_player
 alias gits='git status -s'
 alias lg=lazygit
+alias playing="spp get key playback | jq '{name: .item.name, artist: .item.artists[0].name, album: .item.album.name}'"
+alias l="ls -lah"
 
 source <(fzf --zsh)
 source /opt/homebrew/opt/asdf/libexec/asdf.sh

@@ -1,3 +1,20 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
 
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+export EDITOR=nvim
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH=$PATH:/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources
+export PATH=$PATH:/Applications/SuperCollider.app/Contents/MacOS
+export GOPATH=/Users/hosack/code/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=/opt/homebrew/opt/sqlite/bin:$PATH
+source "$HOME/.cargo/env"
+
