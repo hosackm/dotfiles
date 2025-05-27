@@ -25,3 +25,6 @@ eval "$(starship init zsh)"
 # enable emacs mode so (ctrl+a, a) moves to head of line
 bindkey -e
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/tofu tofu
