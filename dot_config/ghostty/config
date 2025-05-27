@@ -1,0 +1,15 @@
+font-family = "FiraCode Nerd Font Mono"
+font-size = 16
+
+# dark
+theme = "catppuccin-mocha"
+# light
+# theme = "3024 Day"
+window-inherit-font-size = false
+
+
+# shell-integration-features = no-cursor
+# cursor-style-blink = false
+# cursor-style=bar
+
+

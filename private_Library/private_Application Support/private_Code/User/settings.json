@@ -1,0 +1,53 @@
+{
+    // "workbench.colorTheme": "Default High Contrast Light",
+    "workbench.colorTheme": "Catppuccin Macchiato Bordered",
+    "editor.fontFamily": "'FiraCode Nerd Font'",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "300",
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "zig.path": "zig",
+    "zig.zls.path": "zls",
+    "go.toolsManagement.autoUpdate": true,
+    "python.languageServer": "Pylance",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeight": 100,
+    "[toml]": {
+        "editor.formatOnSave": false
+    },
+    "[scss]": {
+        "editor.formatOnSave": false
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+    },
+    "explorer.confirmDragAndDrop": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.showConfigureWithDebuggerNotification": false,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "clang-format.language.c.enable": true,
+    "clang-format.executable": "/opt/homebrew/bin/clang-format",
+    "clangd.arguments": [
+        "--header-insertion=never"
+    ],
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.formatOnSave": false
+    },
+    "[proto]": {
+        "editor.tabSize": 2
+    },
+    "[terraform]": {
+        "editor.tabSize": 2,
+    },
+    "zig.zls.enabled": "on",
+    "chat.commandCenter.enabled": false,
+    "svelte.enable-ts-plugin": true
+}
