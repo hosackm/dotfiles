@@ -152,4 +152,3 @@
     darwinPackages = self.darwinConfigurations."mbp".pkgs;
   };
 }
-
