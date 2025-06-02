@@ -23,10 +23,7 @@
       system.defaults = {
         dock.autohide = true;
         dock.persistent-apps = [
-          "/Applications/iTerm.app"
-          "/Applications/Brave Browser.app"
           "/Applications/Visual Studio Code.app"
-          "/Applications/Ableton Live 12 Suite.app"
         ];
         # column view by default in Finder
         finder.FXPreferredViewStyle = "clmv";
@@ -39,43 +36,39 @@
       homebrew = {
         enable = true;
         brews = [
+          "arc"
           "asdf"
+          "awscli"
           "bat"
           "bat-extras"
           "chezmoi"
           "clang-format"
           "cmake"
           "colima"
-          "criterion"
           "docker"
           "docker-compose"
-          "doxygen"
           "dust"
           "fd"
-          "ffmpeg"
           "fzf"
           "gh"
-          "graphviz"
-          "hugo"
-          "igraph"
-          "imagemagick"
+          "grpcurl"
           "jq"
           "kubernetes-cli"
-          "lazygit"
+          "libsixel"
+          "libsoundio"
+          "libvterm"
           "mas"
           "neovim"
-          "ninja"
-          "pkg-config"
+          "opentofu"
           "postgresql"
-          "qpdf"
-          "raylib"
+          "redis"
           "ripgrep"
           "sox"
-          "spotify_player"
           "spotifyd"
           "starship"
           "tmux"
           "tree"
+          "wget"
           "yq"
           "zoxide"
         ];
@@ -104,7 +97,7 @@
         rm -rf /Applications/Nix\ Apps
         mkdir -p /Applications/Nix\ Apps
         find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-        while read src; do
+        while read -r src; do
           app_name=$(basename "$src")
           echo "copying $src" >&2
           ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
@@ -112,7 +105,7 @@
       '';
 
       # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
+      # services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
       # Necessary for using flakes on this system.
@@ -129,13 +122,15 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
+      system.primaryUser = "hosack";
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
+    # sudo darwin-rebuild switch --flake ~/.config/nix#mbp
     darwinConfigurations."mbp" = nix-darwin.lib.darwinSystem {
       modules = [ configuration
         nix-homebrew.darwinModules.nix-homebrew {
