@@ -10,21 +10,21 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 alias spp=spotify_player
 alias gits='git status -s'
 alias lg=lazygit
-alias playing="spp get key playback | jq '{name: .item.name, artist: .item.artists[0].name, album: .item.album.name}'"
+# alias playing="spp get key playback | jq '{name: .item.name, artist: .item.artists[0].name, album: .item.album.name}'"
 alias l="ls -lah"
 
 source <(fzf --zsh)
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
+# source /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(starship init zsh)"
 
 # enable emacs mode so (ctrl+a, a) moves to head of line
 bindkey -e
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+autoload -Uz compinit && compinit
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/tofu tofu
+# complete -o nospace -C /opt/homebrew/bin/tofu tofu
+
