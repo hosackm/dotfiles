@@ -29,12 +29,12 @@ return {
 
   -- make sure these are installed
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-  			"lua-language-server",
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
         "stylua",
-  			"html-lsp",
+        "html-lsp",
         "css-lsp",
         "prettier",
         "black",
@@ -46,7 +46,7 @@ return {
         "delve",
         "docker-compose-language-service",
         "dockerfile-language-server",
-        "elixir-ls",  -- doesn't work, requires manual install
+        "elixir-ls", -- doesn't work, requires manual install
         "goimports",
         "golangci-lint",
         "golangci-lint-langserver",
@@ -63,15 +63,15 @@ return {
         "stylua",
         "tailwindcss-language-server",
         "zls",
-  		},
-  	},
+      },
+    },
   },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  		  "vim",
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
         "lua",
         "vimdoc",
         "html",
@@ -89,8 +89,8 @@ return {
         "sql",
         "svelte",
         "zig",
-  		},
-  	},
+      },
+    },
   },
 
   {
@@ -98,10 +98,9 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
-  }
+  },
 }
-

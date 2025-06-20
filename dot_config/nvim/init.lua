@@ -53,10 +53,11 @@ set_tab_width("go", 4)
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
-      local last_line = vim.fn.getline("$")
-      if not last_line:match("^%s*$") then
-          vim.api.nvim_buf_set_lines(0, -1, -1, false, { "" })
-      end
+    local last_line = vim.fn.getline("$")
+    if not last_line:match("^%s*$") then
+      vim.api.nvim_buf_set_lines(0, -1, -1, false, { "" })
+    end
+    vim.lsp.buf.format({ async = false })
   end,
 })
 
