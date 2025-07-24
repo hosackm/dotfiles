@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local map = vim.keymap.set
 
@@ -28,13 +28,9 @@ map("n", "<leader>fS", "<Cmd>Telescope treesitter<CR>")
 map("n", "<leader>ts", "<Cmd>Telescope spell_suggest<CR>")
 map("n", "<leader>td", "<Cmd>Telescope diagnostics<CR>")
 
-map("x", "<leader>pp", [["_dP]], { desc = "Paste without overwriting clipboard" })
+map("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting clipboard" })
 
-map({ "n", "t" }, "<leader>gg", function()
-    require("nvchad.term").toggle { pos = "float", id = "floatTerm", float_opts = {
-        row = 0.05,
-        col = 0.05,
-        width = 0.9,
-        height = 0.8,
-    }, cmd = "lazygit" }
-end, { desc = "terminal toggle floating term" })
+-- map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek definition" })
+--
+-- <C-i> is interpretted as tab in the terminal. So map the <C-i> to something else
+map("n", "<leader>j", "<C-i>", { noremap = true, silent = true, desc = "Jump forward in jumplist" })
