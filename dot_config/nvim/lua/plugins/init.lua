@@ -11,23 +11,6 @@ return {
     },
   },
 
-  -- A little too heavy of an LSP overhaul app for my tastes...
-  -- But leaving it here in case you want to try it out again sometime.
-  -- {
-  -- 	"nvimdev/lspsaga.nvim",
-  -- 	lazy = false,
-  -- 	config = function()
-  -- 		require("lspsaga").setup({})
-  -- 	end,
-  -- 	dependencies = {
-  -- 		"nvim-treesitter/nvim-treesitter", -- optional
-  -- 		"nvim-tree/nvim-web-devicons", -- optional
-  -- 	},
-  --  keys = {
-  --    { "gp", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition" },
-  --  },
-  -- },
-
   {
     "kdheepak/lazygit.nvim",
     lazy = true,

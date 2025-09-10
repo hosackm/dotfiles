@@ -11,11 +11,21 @@ export FZF_CTRL_R_OPTS="
   --header 'Press CTRL-Y to copy command into clipboard'"
 
 export EDITOR=nvim
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export PATH=$PATH:/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources
 export PATH=$PATH:/Applications/SuperCollider.app/Contents/MacOS
+export PATH=/opt/homebrew/opt/sqlite/bin:$PATH
+
 export GOPATH=/Users/matthosack/code/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=/opt/homebrew/opt/sqlite/bin:$PATH
+export PATH=$(go env GOBIN):$PATH
+
 source "$HOME/.cargo/env"
+
+# ffmpeg
+export PATH="/opt/homebrew/opt/ffmpeg/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/ffmpeg/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/ffmpeg/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/ffmpeg/lib/pkgconfig"
 

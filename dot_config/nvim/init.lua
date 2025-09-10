@@ -74,3 +74,34 @@ function TrimTrailingWhitespace()
   end
   vim.api.nvim_buf_set_lines(buffer, 0, -1, false, lines)
 end
+
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+require("telescope").setup({
+  defaults = {
+    mappings = {
+      i = {
+        -- Open all marked files in new tabs using tabufline
+        ["<C-t>"] = function(prompt_bufnr)
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local selections = picker:get_multi_selection()
+
+          if vim.tbl_isempty(selections) then
+            table.insert(selections, action_state.get_selected_entry())
+          end
+
+          actions.close(prompt_bufnr)
+
+          -- Open first file directly (in current buffer)
+          vim.cmd("edit " .. vim.fn.fnameescape(selections[1].path or selections[1].value))
+
+          -- Open remaining files in background buffers
+          for i = 2, #selections do
+            vim.cmd("badd " .. vim.fn.fnameescape(selections[i].path or selections[i].value))
+          end
+        end,
+      },
+    },
+  },
+})
