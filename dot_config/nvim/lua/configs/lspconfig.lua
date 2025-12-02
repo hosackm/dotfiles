@@ -1,70 +1,42 @@
--- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+
+local shims = vim.env.HOME .. "/.asdf/shims/"
+
 local servers = {
-  "html",
-  "cssls",
-  "elixirls",
-  "pyright",
-  "ruff",
-  "zls",
-  "clangd",
-  "gopls",
-  "golangci_lint_ls",
-  "rust_analyzer"
+  html = {},
+  cssls = {},
+  pyright = {},
+  ruff = {},
+  clangd = {},
+  gopls = { cmd = { shims .. "gopls" } },
+  golangci_lint_ls = { cmd = { shims .. "golangci-lint" } },
+  rust_analyzer = {},
+  ts_ls = {},
+
+  elixirls = {
+    cmd = { "/Users/hosack/.local/share/elixir-ls/language_server.sh" },
+  },
+
+  zls = {
+    settings = {
+      zls = {
+        zig_exe_path = shims .. "zig",
+        zig_lib_path = shims .. "../installs/zig/0.15.1/lib",
+      },
+    },
+  },
 }
--- not guaranteed to be correct name. See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
--- "cmake-language-server",
--- "cmakelint",
--- "cpplint",
--- "cpptools",
--- "delve",
--- "docker-compose-language-service",
--- "dockerfile-language-server",
--- "goimports",
--- "golangci-lint",
--- "golangci-lint-langserver",
--- "gopls",
--- "jsonlint",
--- "lua-language-server",
--- "markdownlint",
--- "mypy",
--- "prettier",
--- "pydocstyle",
--- "pyflakes",
--- "pylint",
--- "pyright",
--- "stylua",
--- "tailwindcss-language-server",
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
-
--- single langauge, ie. typescript
-lspconfig.ts_ls.setup {
+local default = {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
 }
 
-lspconfig.elixirls.setup {
-  cmd = { "/Users/hosack/.local/share/elixir-ls/language_server.sh" },
-}
-
-lspconfig.zls.setup {
-  settings = {
-    zls = {
-      zig_exe_path = "/Users/matthosack/.asdf/installs/zig/0.15.1/zig",
-      zig_lib_path = "/Users/matthosack/.asdf/installs/zig/0.15.1/lib",
-    }
-  }
-}
+for server, opts in pairs(servers) do
+  lspconfig[server].setup(vim.tbl_deep_extend("force", default, opts))
+end

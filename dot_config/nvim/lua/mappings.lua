@@ -77,3 +77,20 @@ vim.keymap.set("n", "<leader>ty", function()
   vim.fn.setreg("+", full_test_id)
   vim.notify("Copied test path: " .. full_test_id)
 end, { desc = "Copy pytest test identifier", noremap = true, silent = true })
+
+
+vim.keymap.set("n", "<leader>rr", function()
+  local tele = require('telescope')
+  tele.load_extension("rest")
+end, { desc = "Open rest.nvim plugin" })
+
+map("n", "<leader>X", require('nvchad.tabufline').closeAllBufs)
+
+-- DAP mappings
+map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+map("n", "<leader>dc", function() require("dap").continue() end, { desc = "Continue" })
+map("n", "<leader>do", function() require("dap").step_over() end, { desc = "Step Over" })
+map("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step Into" })
+map("n", "<leader>du", function() require("dap").step_out() end, { desc = "Step Out" })
+map("n", "<leader>dq", function() require("dap").terminate() end, { desc = "Terminate" })
+map("n", "<leader>dd", function() require("dapui").toggle() end, { desc = "Toggle DAP UI" })

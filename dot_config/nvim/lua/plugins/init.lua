@@ -149,4 +149,49 @@ return {
       })
     end,
   },
+  {
+    "rest-nvim/rest.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    }
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "leoluz/nvim-dap-go",
+      "theHamsta/nvim-dap-virtual-text",
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap-python",
+    },
+    config = function()
+      local dap = require("dap")
+      require("dap-go").setup()
+      require("dap-python").setup()
+    end,
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  }
 }

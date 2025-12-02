@@ -2,15 +2,19 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
-local M = {}
-
-M.base46 = {
-  theme = "tokyodark",
-
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+local M = {
+  base46 = {
+    theme = "tokyodark",
+  },
+  ui = {
+    statusline = {
+      -- theme = "default",
+      -- theme = "minimal",
+      -- theme = "vscode",
+      -- theme = "vscode_colored",
+      -- theme = "minimal"
+    }
+  }
 }
 
 return M
