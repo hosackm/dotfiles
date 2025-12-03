@@ -1,8 +1,4 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local lspconfig = require "lspconfig"
+require("nvchad.configs.lspconfig").defaults()
 
 local shims = vim.env.HOME .. "/.asdf/shims/"
 
@@ -31,12 +27,10 @@ local servers = {
   },
 }
 
-local default = {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
+-- read :h vim.lsp.config for changing options of lsp servers 
+-- vim.lsp.enable(servers)
 
-for server, opts in pairs(servers) do
-  lspconfig[server].setup(vim.tbl_deep_extend("force", default, opts))
+for name, config in pairs(servers) do
+  vim.lsp.config[name] = config
+  vim.lsp.enable(name)
 end
