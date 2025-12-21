@@ -17,7 +17,7 @@ export PATH=$PATH:/Library/Developer/CommandLineTools/Library/PrivateFrameworks/
 export PATH=$PATH:/Applications/SuperCollider.app/Contents/MacOS
 export PATH=/opt/homebrew/opt/sqlite/bin:$PATH
 
-export GOPATH=/Users/matthosack/code/go
+export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$(go env GOBIN):$PATH
 
