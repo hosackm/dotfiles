@@ -193,5 +193,39 @@ return {
         dapui.close()
       end
     end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = function(_, conf)
+      local actions = require "telescope.actions"
+      local action_state = require "telescope.actions.state"
+
+      -- MERGE instead of replace
+      conf.defaults.mappings.i = vim.tbl_extend("force",
+        conf.defaults.mappings.i or {},
+        {
+          ["<C-t>"] = function(prompt_bufnr)
+            local picker = action_state.get_current_picker(prompt_bufnr)
+            local selections = picker:get_multi_selection()
+
+            if vim.tbl_isempty(selections) then
+              table.insert(selections, action_state.get_selected_entry())
+            end
+
+            actions.close(prompt_bufnr)
+
+            -- open first
+            vim.cmd("edit " .. vim.fn.fnameescape(selections[1].path or selections[1].value))
+
+            -- open rest as background buffers
+            for i = 2, #selections do
+              vim.cmd("badd " .. vim.fn.fnameescape(selections[i].path or selections[i].value))
+            end
+          end,
+        }
+      )
+
+      return conf
+    end,
   }
 }
