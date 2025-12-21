@@ -10,13 +10,22 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
+alias spp=spotify_player
+alias gs='git status -s'
+alias gb='git branch -l'
+alias gbd='git branch -D $(gb | fzf)'
+alias gl='git logline'
+alias fzg='gb | fzf'
+alias lg=lazygit
+alias playing="spp get key playback | jq '{name: .item.name, artist: .item.artists[0].name, album: .item.album.name}'"
+alias l="ls -lah"
+alias gstl='gst-launch-1.0'
+alias s='source .venv/bin/activate'
+alias cnvim='nvim -c "cd ~/.config/nvim"'
+alias dcd='docker compose down --remove-orphans'
+
 source <(fzf --zsh)
 eval "$(starship init zsh)"
-
-# my aliases
-source $HOME/.config/shell/global-aliases.sh
-source $HOME/.config/shell/kubectl-aliases.sh
-source $HOME/.config/shell/kubectl-completions.sh
 
 # enable emacs mode so (ctrl+a, a) moves to head of line
 bindkey -e
@@ -25,3 +34,5 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 autoload -Uz compinit && compinit
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+. "$HOME/.turso/env"
