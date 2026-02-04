@@ -30,7 +30,7 @@ eval "$(starship init zsh)"
 # enable emacs mode so (ctrl+a, a) moves to head of line
 bindkey -e
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+eval "$(/Users/matthosack/.local/bin/mise activate zsh)"
 autoload -Uz compinit && compinit
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
