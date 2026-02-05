@@ -1,5 +1,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$($HOME/.local/bin/mise activate zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_DEFAULT_OPTS="--style full"
