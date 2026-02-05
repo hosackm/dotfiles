@@ -1,6 +1,10 @@
-require("nvchad.configs.lspconfig").defaults()
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_init = require("nvchad.configs.lspconfig").on_init
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local shims = vim.env.HOME .. "/.asdf/shims/"
+local lspconfig = require "lspconfig"
+
+local shims = vim.env.HOME .. "/.local/share/mise/"
 
 local servers = {
   html = {},
@@ -8,8 +12,8 @@ local servers = {
   pyright = {},
   ruff = {},
   clangd = {},
-  gopls = { cmd = { shims .. "gopls" } },
-  golangci_lint_ls = { cmd = { shims .. "golangci-lint" } },
+  gopls = {},
+  golangci_lint_ls = {},
   rust_analyzer = {},
   ts_ls = {},
 
@@ -20,17 +24,19 @@ local servers = {
   zls = {
     settings = {
       zls = {
-        zig_exe_path = shims .. "zig",
-        zig_lib_path = shims .. "../installs/zig/0.15.1/lib",
+        zig_exe_path = shims .. "installs/zig/0.15/bin/zig",
+        zig_lib_path = shims .. "installs/zig/0.15/lib",
       },
     },
   },
 }
 
--- read :h vim.lsp.config for changing options of lsp servers 
--- vim.lsp.enable(servers)
+local default = {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
 
-for name, config in pairs(servers) do
-  vim.lsp.config[name] = config
-  vim.lsp.enable(name)
+for server, opts in pairs(servers) do
+  lspconfig[server].setup(vim.tbl_deep_extend("force", default, opts))
 end
