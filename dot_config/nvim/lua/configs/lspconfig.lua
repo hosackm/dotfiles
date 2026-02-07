@@ -2,7 +2,7 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local shims = vim.env.HOME .. "/.local/share/mise/"
+local share = vim.env.HOME .. "/.local/share"
 
 local servers = {
   html = {},
@@ -16,14 +16,14 @@ local servers = {
   ts_ls = {},
 
   elixirls = {
-    cmd = { "/Users/hosack/.local/share/elixir-ls/language_server.sh" },
+    cmd = { "/elixir-ls/language_server.sh" },
   },
 
   zls = {
     settings = {
       zls = {
-        zig_exe_path = shims .. "installs/zig/0.15/bin/zig",
-        zig_lib_path = shims .. "installs/zig/0.15/lib",
+        zig_exe_path = share .. "/mise/installs/zig/0.15/bin/zig",
+        zig_lib_path = share .. "/mise/installs/zig/0.15/lib",
       },
     },
   },
