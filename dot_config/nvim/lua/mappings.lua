@@ -94,3 +94,7 @@ map("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step
 map("n", "<leader>du", function() require("dap").step_out() end, { desc = "Step Out" })
 map("n", "<leader>dq", function() require("dap").terminate() end, { desc = "Terminate" })
 map("n", "<leader>dd", function() require("dapui").toggle() end, { desc = "Toggle DAP UI" })
+
+-- Markview
+map("n", "<leader>md", function() require("markview.commands").toggle() end, { desc = "Toggle markdown preview" })
+map("n", "<leader>ms", function() require("markview.commands").splitToggle() end, { desc = "Toggle markdown split-view" })
