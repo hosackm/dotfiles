@@ -1,5 +1,11 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("configs.lspconfig")
+    end,
+  },
+  {
     "dnlhc/glance.nvim",
     lazy = false,
     config = function()
@@ -200,7 +206,7 @@ return {
     end,
   },
   {
-      "OXY2DEV/markview.nvim",
-      lazy = false,
+    "OXY2DEV/markview.nvim",
+    lazy = false,
   }
 }

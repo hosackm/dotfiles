@@ -14,9 +14,24 @@ local servers = {
   golangci_lint_ls = {},
   rust_analyzer = {},
   ts_ls = {},
+  terraform_ls = {
+    cmd = { "terraform-ls", "serve" },
+    filetypes = {
+      "terraform",
+      "terraform-vars",
+    },
+    root_markers = {
+      ".terraform",
+      ".git",
+    },
+  },
+
+  sourcekit = {
+    cmd = { "xcrun", "sourcekit-lsp" }
+  },
 
   elixirls = {
-    cmd = { "/elixir-ls/language_server.sh" },
+    cmd = { share .. "/elixir-ls/language_server.sh" },
   },
 
   zls = {

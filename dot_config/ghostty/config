@@ -11,7 +11,8 @@ font-size = 14
 theme = "catppuccin-mocha"
 # theme = "3024 Day"
 
-keybind = ctrl+a>a=end_key_sequence
+# uncomment if you aren't using tmux
+# keybind = ctrl+a>a=end_key_sequence
 
 #################
 # pane navigation
