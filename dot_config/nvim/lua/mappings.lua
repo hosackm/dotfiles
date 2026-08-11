@@ -24,6 +24,11 @@ map("n", "<leader>td", "<Cmd>Telescope diagnostics<CR>")
 
 map("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting clipboard" })
 
+map("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
+map("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { silent = true })
+map("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { silent = true })
+map("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { silent = true })
+map("n", "<C-\\>", "<Cmd>TmuxNavigateLastActive<CR>", { silent = true })
 -- map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek definition" })
 --
 -- <C-i> is interpretted as tab in the terminal. So map the <C-i> to something else
