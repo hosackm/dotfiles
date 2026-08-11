@@ -12,6 +12,10 @@ bind -n C-h select-pane -L
 bind -n C-j select-pane -D
 bind -n C-k select-pane -U
 bind -n C-l select-pane -R
+
+# set -g prefix C-a
+# set -g prefix2 C-a
+# unbind C-b
 bind a send ^A #send ^A, so that you can press ctrl-a a to send ctrl-a
 
 # preserve tmux stock bindings,
@@ -303,7 +307,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{username_ssh}
 # tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
 tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #{pretty_pane_current_path} "
-tmux_conf_theme_status_right=" #{prefix}#{synchronized},  #{loadavg}%% , #{battery_vbar} #{?battery_percentage,#{battery_percentage},}, %R , %d %b | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_right=" #{mouse}#{prefix}#{synchronized},  #{loadavg}%% , #{battery_vbar} #{?battery_percentage,#{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_4,$tmux_conf_theme_colour_4,$tmux_conf_theme_colour_4"
@@ -431,7 +435,7 @@ tmux_conf_urlscan_options="--compact --dedupe"
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -439,11 +443,12 @@ tmux_conf_urlscan_options="--compact --dedupe"
 #set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+set -gu prefix2
+unbind C-a
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
 
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
@@ -484,6 +489,7 @@ tmux_conf_uninstall_plugins_on_reload=false
 
 # /!\ do not add set -g @plugin 'tmux-plugins/tpm'
 # /!\ do not add run '~/.tmux/plugins/tpm/tpm'
+set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # /!\ the 'set -g @tpm_plugins' syntax is not supported
 # to enable a plugin, use the 'set -g @plugin' syntax:
