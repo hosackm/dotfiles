@@ -1,5 +1,59 @@
 return {
   {
+    "nvim-mini/mini.splitjoin",
+    lazy = false,
+    opts = {},
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("configs.treesitter")
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter-textobjects").setup()
+
+      local select_textobject = require("nvim-treesitter-textobjects.select").select_textobject
+
+      vim.keymap.set({ "x", "o" }, "af", function()
+        select_textobject("@function.outer")
+      end, { desc = "select outer function" })
+
+      vim.keymap.set({ "x", "o" }, "if", function()
+        select_textobject("@function.inner")
+      end, { desc = "select inner function" })
+
+      vim.keymap.set({ "x", "o" }, "aa", function()
+        select_textobject("@parameter.outer")
+      end, { desc = "select outer function parameter" })
+
+      vim.keymap.set({ "x", "o" }, "ia", function()
+        select_textobject("@parameter.inner")
+      end, { desc = "select inner function parameter" })
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    lazy = false,
+    opts = {
+      enable = true,
+      multiwindow = false,
+      max_lines = 0,
+      min_window_height = 0,
+      line_numbers = true,
+      multiline_threshold = 20,
+      trim_scope = "outer",
+      mode = "cursor",
+      separator = nil,
+      zindex = 20,
+      on_attach = nil,
+    }
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("configs.lspconfig")
@@ -56,14 +110,6 @@ return {
       "TmuxNavigatePrevious",
       "TmuxNavigatorProcessList",
     },
-    -- not working...
-    -- keys = {
-    --   { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-    --   { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-    --   { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-    --   { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
-    --   { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-    -- },
   },
 
   -- import the nvchad lsp config as well as your configs.lspconfig
@@ -74,8 +120,6 @@ return {
       require("configs.lspconfig")
     end,
   },
-
-
   {
     "williamboman/mason.nvim",
     opts = {
@@ -118,59 +162,14 @@ return {
     },
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    commit = "7b6cc8949f9999c5ed91436cbe24aa5f99c42025",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "c",
-        "cpp",
-        "cmake",
-        "elixir",
-        "go",
-        "html",
-        "javascript",
-        "json",
-        "python",
-        "terraform",
-        "typescript",
-        "sql",
-        "svelte",
-        "zig",
-        "markdown",
-        "markdown_inline",
-        "latex",
-        "typst",
-        "yaml",
-      },
-    },
-  },
 
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
+      require("nvim-surround").setup({})
     end,
-  },
-  {
-    "rest-nvim/rest.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "http")
-      end,
-    }
   },
   {
     "mfussenegger/nvim-dap",
@@ -186,7 +185,6 @@ return {
       require("dap-python").setup()
     end,
   },
-
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
@@ -209,5 +207,6 @@ return {
   {
     "OXY2DEV/markview.nvim",
     lazy = false,
+    opts = {},
   }
 }

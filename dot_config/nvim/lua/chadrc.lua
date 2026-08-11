@@ -7,18 +7,8 @@ require('custom.autocmds')
 ---@type ChadrcConfig
 local M = {
   base46 = {
-    theme = "kanagawa",
+    theme = "catppuccin",
   },
-  ui = {
-    statusline = {
-      -- theme = "default",
-      -- theme = "minimal",
-      -- theme = "vscode",
-      -- theme = "vscode_colored",
-      -- theme = "minimal"
-    }
-  }
 }
 
 return M
-

@@ -33,3 +33,5 @@ bindkey -e
 autoload -Uz compinit && compinit
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+eval "$(direnv hook zsh)"

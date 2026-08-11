@@ -5,13 +5,19 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 local share = vim.env.HOME .. "/.local/share"
 
 local servers = {
+  proto = {
+    cmd = { "buf", "lsp", "serve" },
+    filetypes = { "proto" }
+  },
   html = {},
   cssls = {},
   pyright = {},
   ruff = {},
   clangd = {},
-  gopls = {},
-  golangci_lint_ls = {},
+  gopls = {
+    filetypes = { "go" }
+  },
+  golangci_lint_ls = { filetypes = { "go" } },
   rust_analyzer = {},
   ts_ls = {},
   terraform_ls = {
