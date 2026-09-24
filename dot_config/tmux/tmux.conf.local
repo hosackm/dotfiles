@@ -18,6 +18,8 @@ bind -n C-l select-pane -R
 # unbind C-b
 bind a send ^A #send ^A, so that you can press ctrl-a a to send ctrl-a
 
+bind-key -T prefix | split-window -h -c "#{pane_current_path}"
+
 # preserve tmux stock bindings,
 # while adding bindings that don't conflict with these stock bindings
 # /!\ this disables some of Oh my tmux! bindings described in README.md
