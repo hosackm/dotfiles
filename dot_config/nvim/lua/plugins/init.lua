@@ -1,5 +1,63 @@
 return {
   {
+    "tpope/vim-dadbod",
+  },
+  {
+    'baggiponte/rex-navigator.nvim',
+    main = 'rex-navigator',
+    lazy = false,
+    opts = {},
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    dependencies = {
+      "tpope/vim-dadbod",
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        ft = { "sql", "mysql", "plsql" },
+      },
+    },
+  },
+  {
+    "kristijanhusak/vim-dadbod-completion",
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require("cmp")
+
+      cmp.setup.filetype("sql", {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
+
+      return opts
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+
+        api.config.mappings.default_on_attach(bufnr)
+
+        vim.keymap.set("n", "<C-i>", api.node.show_info_popup, {
+          buffer = bufnr,
+          desc = "Info",
+        })
+      end,
+    },
+  },
+  {
     "nvim-mini/mini.splitjoin",
     lazy = false,
     opts = {},
@@ -66,8 +124,9 @@ return {
       require("glance").setup({})
     end,
     keys = {
-      { "gp", "<cmd>Glance definitions<cr>", desc = "Peek definition" },
-      { "gr", "<cmd>Glance references<cr>",  desc = "Peek references" },
+      { "gp", "<cmd>Glance definitions<cr>",     desc = "Peek definition" },
+      { "gr", "<cmd>Glance references<cr>",      desc = "Peek references" },
+      { "gm", "<cmd>Glance implementations<cr>", desc = "Peek implementations" },
     },
   },
 

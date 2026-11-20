@@ -24,14 +24,11 @@ map("n", "<leader>td", "<Cmd>Telescope diagnostics<CR>")
 
 map("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting clipboard" })
 
-map("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
-map("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { silent = true })
-map("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { silent = true })
-map("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { silent = true })
-map("n", "<C-\\>", "<Cmd>TmuxNavigateLastActive<CR>", { silent = true })
--- map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek definition" })
---
--- <C-i> is interpretted as tab in the terminal. So map the <C-i> to something else
+map("n", "<C-h>", "<Plug>(RexNavigateLeft)")
+map("n", "<C-j>", "<Plug>(RexNavigateDown)")
+map("n", "<C-k>", "<Plug>(RexNavigateUp)")
+map("n", "<C-l>", "<Plug>(RexNavigateRight)")
+
 map("n", "<leader>j", "<C-i>", { noremap = true, silent = true, desc = "Jump forward in jumplist" })
 
 map("n", "<leader>H", utils.toggle_gitignored, { desc = "Toggle gitignored files in nvtree and Telescope" })
@@ -96,3 +93,44 @@ map("n", "<leader>dd", function() require("dapui").toggle() end, { desc = "Toggl
 -- Markview
 map("n", "<leader>md", function() require("markview.commands").toggle() end, { desc = "Toggle markdown preview" })
 map("n", "<leader>ms", function() require("markview.commands").splitToggle() end, { desc = "Toggle markdown split-view" })
+
+-- Gitsigns
+map("n", "[c", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "[c", bang = true })
+  else
+    require('gitsigns').nav_hunk("prev")
+  end
+end, { desc = "Previous git hunk" })
+
+map("n", "]c", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "]c", bang = true })
+  else
+    require('gitsigns').nav_hunk("next")
+  end
+end, { desc = "Next git hunk" })
+
+map("n", "<leader>gd", function()
+  require('gitsigns').preview_hunk()
+end, { desc = "Git diff preview" })
+
+map("n", "<leader>spi", function()
+  local output = vim.fn.system({ "sh", "-c",
+    "spotify_player get key playback | jq -r '.item | \"\\(.name)\\n\\(.artists[0].name)\"'", })
+  vim.notify(output, vim.log.levels.INFO, { title = "Spotify" })
+end, { desc = "Show currently playing Spotify track" })
+
+map("n", "<leader>spn", function()
+  vim.fn.system({ "sh", "-c", "spotify_player playback next" })
+end, { desc = "Next track in Spotify" })
+
+map("n", "<leader>spp", function()
+  vim.fn.system({ "sh", "-c", "spotify_player playback previous" })
+end, { desc = "Previous track in Spotify" })
+
+map("n", "<leader>sp<Space>", function()
+  vim.fn.system({ "sh", "-c", "spotify_player playback play-pause" })
+end, { desc = "Toggle Spotify playback" })
+
+map("c", "<C-a>", "<Home>", { desc = "Jump cursor to head of command line" })
