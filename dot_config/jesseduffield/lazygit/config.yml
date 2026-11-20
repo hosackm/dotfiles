@@ -1,0 +1,13 @@
+git:
+  diffRenderers:
+    - name: delta
+      command: delta --dark --paging=never --line-numbers
+    - name: difftastic
+      type: extDiff
+      command: difft --color=always --context={{diffContext}}
+    - name: native
+      type: rawGit
+os:
+  editPreset: nvim-remote
+  edit: '[ -z "$NVIM" ] && (nvim -- "{{filename}}") || (nvr --servername "$NVIM" --remote-send "q" && nvr --servername "$NVIM" --remote "{{filename}}" -cc "q")'
+  editAtLine: '[ -z "$NVIM" ] && (nvim +{{line}} -- "{{filename}}") || (nvr --servername "$NVIM" --remote-send "q" && nvr --servername "$NVIM" +{{line}} --remote "{{filename}}" -cc "q")'

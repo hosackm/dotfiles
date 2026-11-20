@@ -149,6 +149,9 @@ return {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
+    init = function()
+      vim.g.lazygit_use_neovim_remote = 1
+    end,
   },
 
   {
