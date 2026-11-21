@@ -1,0 +1,9 @@
+[tools]
+go = "1.27.0"
+node = "26.5.1"
+python = "3.13.5"
+lua = "5.5.0"
+rust = "stable"
+gleam = "1.12.0"
+uv = "latest"
+zig = "0.16.0"

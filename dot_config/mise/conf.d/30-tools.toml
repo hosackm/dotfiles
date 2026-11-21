@@ -1,0 +1,6 @@
+[tools]
+delta = "latest"
+difftastic = "latest"
+gh = "latest"
+jq = "latest"
+sqlc = "1.26.0"
